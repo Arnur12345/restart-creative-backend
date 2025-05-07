@@ -33,6 +33,7 @@ class ThemeWeek(Base):
     start_date = Column(DateTime, nullable=False)
     end_date = Column(DateTime, nullable=False)
     created_at = Column(DateTime, default=func.now())
+    image_url = Column(String(500), nullable=False)
     
     videos = relationship('Video', backref='theme_week', lazy=True)
 

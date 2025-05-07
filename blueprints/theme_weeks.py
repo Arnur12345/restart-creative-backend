@@ -18,7 +18,8 @@ def get_theme_weeks():
             'start_date': week.start_date.isoformat(),
             'end_date': week.end_date.isoformat(),
             'videos_count': len(week.videos),
-            'result_url' : week.result_url
+            'result_url': week.result_url,
+            'image_url': week.image_url
         } for week in theme_weeks]), 200
     finally:
         session.close()
@@ -37,7 +38,8 @@ def get_theme_week(week_id):
             'description': week.description,
             'start_date': week.start_date.isoformat(),
             'end_date': week.end_date.isoformat(),
-            'result_url' : week.result_url,
+            'result_url': week.result_url,
+            'image_url': week.image_url,
             'videos': [{
                 'id': video.id,
                 'title': video.title,

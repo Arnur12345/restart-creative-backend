@@ -148,7 +148,8 @@ def get_theme_weeks():
             'description': w.description,
             'start_date': w.start_date.isoformat(),
             'end_date': w.end_date.isoformat(),
-            'result_url': w.result_url
+            'result_url': w.result_url,
+            'image_url': w.image_url
         } for w in weeks]), 200
     finally:
         session.close()
@@ -165,7 +166,8 @@ def create_theme_week():
             description=data.get('description'),
             start_date=datetime.fromisoformat(data['start_date']),
             end_date=datetime.fromisoformat(data['end_date']),
-            result_url=data.get('result_url', '')
+            result_url=data.get('result_url', ''),
+            image_url=data.get('image_url', '')
         )
         
         session.add(theme_week)
@@ -192,7 +194,8 @@ def get_theme_week(week_id):
             'description': week.description,
             'start_date': week.start_date.isoformat(),
             'end_date': week.end_date.isoformat(),
-            'result_url': week.result_url
+            'result_url': week.result_url,
+            'image_url': week.image_url
         }), 200
     finally:
         session.close()
@@ -214,6 +217,7 @@ def update_theme_week(week_id):
         week.start_date = datetime.fromisoformat(data['start_date']) if 'start_date' in data else week.start_date
         week.end_date = datetime.fromisoformat(data['end_date']) if 'end_date' in data else week.end_date
         week.result_url = data.get('result_url', week.result_url)
+        week.image_url = data.get('image_url', week.image_url)
         
         session.commit()
         return jsonify({'message': 'Тематическая неделя успешно обновлена'}), 200
